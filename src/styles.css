@@ -321,20 +321,24 @@ button, a {
 .stage-viewport {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1000px;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  overflow: visible;
+  touch-action: pan-y;
 }
 
 /* Tag Flutuante de Tecido Nobre */
 .fabric-pill {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 8px;
+  left: 8px;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(212, 175, 55, 0.4);
   padding: 0.4rem 0.95rem;
   border-radius: var(--radius-full);
@@ -354,157 +358,240 @@ button, a {
   flex-shrink: 0;
 }
 
-/* Pódio Circular de Vitrine de Boutique */
+/* Pódio Iluminado de Vitrine com Halo Dourado */
+.podium-halo {
+  position: absolute;
+  bottom: 25px;
+  width: 360px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(233, 30, 99, 0.12) 0%, rgba(212, 175, 55, 0.1) 40%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .podium-base {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   width: 320px;
-  height: 64px;
+  height: 52px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(233, 30, 99, 0.08) 0%, rgba(212, 175, 55, 0.05) 50%, transparent 70%);
-  border: 1.5px solid rgba(212, 175, 55, 0.35);
-  box-shadow: 0 14px 32px rgba(233, 30, 99, 0.08), inset 0 2px 8px rgba(255, 255, 255, 0.9);
-  transform: rotateX(20deg);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5F3EF 55%, #E5DDD0 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 8px rgba(212, 175, 55, 0.25);
+  transform: rotateX(24deg);
   pointer-events: none;
+  z-index: 2;
 }
 
 .podium-base::after {
   content: '';
   position: absolute;
-  top: 8px;
-  left: 18px;
-  right: 18px;
-  bottom: 8px;
+  inset: 6px 14px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.96) 0%, rgba(253, 248, 242, 0.92) 100%);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.98) 0%, rgba(250, 246, 238, 0.92) 100%);
   border: 1px dashed rgba(212, 175, 55, 0.4);
 }
 
 .podium-contact-shadow {
   position: absolute;
-  bottom: 40px;
-  width: 140px;
-  height: 18px;
+  bottom: 20px;
+  width: 250px;
+  height: 22px;
   border-radius: 50%;
   background: radial-gradient(ellipse at center, rgba(20, 10, 15, 0.35) 0%, rgba(20, 10, 15, 0.05) 60%, transparent 80%);
-  filter: blur(2.5px);
+  filter: blur(3px);
   pointer-events: none;
-}
-
-/* Rotor 3D do Manequim (Passarela & Movimento Suave) */
-.mannequin-rotor {
-  position: relative;
-  width: 290px;
-  height: 440px;
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 16px 24px rgba(35, 15, 25, 0.12));
-  animation: atelierBreathe 4.5s ease-in-out infinite alternate;
-  will-change: transform, filter;
-}
-
-@keyframes atelierBreathe {
-  0% { transform: translateY(0px) rotateY(-2.5deg); }
-  100% { transform: translateY(-4px) rotateY(2.5deg); }
-}
-
-.mannequin-rotor.pivot-out {
-  animation: none;
-  transform: translateY(-6px) rotateY(20deg) scale(0.97);
-  filter: drop-shadow(0 20px 28px rgba(233, 30, 99, 0.16)) brightness(1.05);
-  transition: transform 0.35s ease-in, filter 0.35s ease-in;
-}
-
-.mannequin-rotor.pivot-in {
-  animation: none;
-  transform: translateY(0px) rotateY(0deg) scale(1);
-  filter: drop-shadow(0 16px 24px rgba(35, 15, 25, 0.12)) brightness(1);
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease-out;
-}
-
-/* Camadas de Silhueta e Roupa */
-.svg-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.base-layer {
   z-index: 1;
 }
 
-.outfit-layer {
-  z-index: 2;
-  opacity: 0;
-  transform: scale(0.98) translateY(3px);
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.outfit-layer.active {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  pointer-events: auto;
-}
-
-/* Card Flutuante de Foto Real da Coleção */
-.collection-real-badge {
+/* Botões de Giro Laterais */
+.stage-spin-btn {
   position: absolute;
-  bottom: 25px;
-  right: 0;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(233, 30, 99, 0.18);
-  border-radius: 14px;
-  padding: 0.5rem 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--color-primary);
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  justify-content: center;
+  cursor: pointer;
   z-index: 25;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
-.collection-real-badge:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 30px rgba(233, 30, 99, 0.15);
+.stage-spin-btn:hover {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.28);
 }
 
-.real-thumb {
-  width: 48px;
-  height: 60px;
-  border-radius: 8px;
-  object-fit: cover;
-  border: 1px solid #F3F4F6;
+.stage-spin-btn:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
-.real-meta {
+.stage-spin-btn.btn-prev {
+  left: 4px;
+}
+
+.stage-spin-btn.btn-next {
+  right: 4px;
+}
+
+/* Cilindro Giratório 3D */
+.turntable-cylinder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
   display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
 }
 
-.real-tag {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.turntable-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 36px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotateY(80deg) translateZ(-80px) scale(0.88);
+  transition: 
+    transform 0.85s cubic-bezier(0.2, 0.95, 0.3, 1),
+    opacity 0.85s cubic-bezier(0.2, 0.95, 0.3, 1),
+    visibility 0.85s;
+  will-change: transform, opacity;
+}
+
+.turntable-slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: rotateY(0deg) translateZ(0) scale(1);
+  z-index: 6;
+}
+
+.turntable-slide.spin-out-left {
+  opacity: 0;
+  visibility: visible;
+  transform: rotateY(-80deg) translateZ(-90px) scale(0.85);
+  z-index: 4;
+}
+
+.turntable-slide.spin-in-right {
+  opacity: 0;
+  visibility: visible;
+  transform: rotateY(80deg) translateZ(-90px) scale(0.85);
+  z-index: 4;
+}
+
+.turntable-slide.spin-out-right {
+  opacity: 0;
+  visibility: visible;
+  transform: rotateY(80deg) translateZ(-90px) scale(0.85);
+  z-index: 4;
+}
+
+.turntable-slide.spin-in-left {
+  opacity: 0;
+  visibility: visible;
+  transform: rotateY(-80deg) translateZ(-90px) scale(0.85);
+  z-index: 4;
+}
+
+.mannequin-photo {
+  max-width: 90%;
+  max-height: 480px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.14));
+  pointer-events: none;
+  transition: transform 0.4s ease;
+}
+
+.stage-viewport:hover .turntable-slide.active .mannequin-photo {
+  transform: scale(1.02);
+}
+
+/* Card Flutuante de Detalhes do Look */
+.look-detail-badge {
+  position: absolute;
+  bottom: 24px;
+  right: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(233, 30, 99, 0.18);
+  border-radius: 14px;
+  padding: 0.55rem 0.85rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  z-index: 22;
+  max-width: 220px;
+  pointer-events: none;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.detail-badge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.detail-tag {
+  font-size: 0.64rem;
   font-weight: 800;
   color: var(--color-primary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.real-title {
-  font-size: 0.84rem;
+.detail-views {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #92400E;
+  background: rgba(245, 158, 11, 0.14);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+.detail-title {
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-dark);
+  margin: 0 0 0.15rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.real-sub {
-  font-size: 0.72rem;
+.detail-subtitle {
+  font-size: 0.73rem;
   color: var(--color-gray-medium);
+  margin: 0;
+  font-weight: 500;
 }
 
-/* Controles da Vitrine (Estilo Stories com Progresso) */
+/* Controles da Vitrine (5 Abas com Progresso) */
 .stage-controls {
   width: 100%;
   margin-top: 1.25rem;
@@ -516,8 +603,8 @@ button, a {
 
 .style-tabs-track {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.35rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.25rem;
   width: 100%;
   background: var(--color-white);
   padding: 0.35rem;
@@ -530,13 +617,15 @@ button, a {
   position: relative;
   background: none;
   border: none;
-  padding: 0.6rem 0.4rem;
-  font-size: 0.82rem;
+  padding: 0.55rem 0.3rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--color-gray-medium);
   border-radius: var(--radius-full);
   cursor: pointer;
   overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
   transition: color var(--transition-fast);
 }
 
@@ -563,7 +652,7 @@ button, a {
 
 .style-tab.active .tab-bar-fill {
   width: 100%;
-  transition: width 3.6s linear;
+  transition: width 4.2s linear;
 }
 
 .whatsapp-direct-chip {
@@ -1145,6 +1234,52 @@ button, a {
     right: 1rem;
     width: 52px;
     height: 52px;
+  }
+
+  /* Vitrine Giratória 3D no Mobile */
+  .stage-viewport {
+    height: 440px;
+  }
+  .mannequin-photo {
+    max-height: 400px;
+  }
+  .stage-spin-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .stage-spin-btn.btn-prev {
+    left: 8px;
+  }
+  .stage-spin-btn.btn-next {
+    right: 8px;
+  }
+  .look-detail-badge {
+    bottom: 12px;
+    right: 4px;
+    max-width: 190px;
+    padding: 0.45rem 0.65rem;
+  }
+  .detail-title {
+    font-size: 0.76rem;
+  }
+  .detail-subtitle {
+    font-size: 0.66rem;
+  }
+  .style-tabs-track {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.2rem;
+    padding: 0.25rem;
+  }
+  .style-tabs-track::-webkit-scrollbar {
+    display: none;
+  }
+  .style-tab {
+    flex: 1 0 auto;
+    padding: 0.5rem 0.6rem;
+    font-size: 0.72rem;
   }
 }
 

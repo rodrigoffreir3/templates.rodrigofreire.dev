@@ -11,120 +11,161 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. HERO MANNEQUIN HAUTE COUTURE CONTROLLER (ATELIER 3D)
+   1. HERO 3D TURNTABLE CONTROLLER (5 LOOKS REAIS COM FRENTE E COSTAS)
    ========================================================================== */
 function initHeroMannequin() {
-  const rotor = document.getElementById('mannequinRotor');
-  const outfits = document.querySelectorAll('.outfit-layer');
+  const cylinder = document.getElementById('turntableCylinder');
+  const slides = document.querySelectorAll('.turntable-slide');
   const tabs = document.querySelectorAll('.style-tab');
+  const prevBtn = document.getElementById('stagePrevBtn');
+  const nextBtn = document.getElementById('stageNextBtn');
   const fabricLabel = document.getElementById('fabricLabel');
-  const realThumb = document.getElementById('realThumb');
-  const realTitle = document.getElementById('realTitle');
-  const realSub = document.getElementById('realSub');
+  const lookTitle = document.getElementById('lookTitle');
+  const lookSub = document.getElementById('lookSub');
   const waChip = document.getElementById('waChip');
   const waChipText = document.getElementById('waChipText');
+  const stageViewport = document.getElementById('stageViewport');
   const stage = document.querySelector('.hero-stage');
 
-  if (!rotor || outfits.length === 0) return;
+  if (!cylinder || slides.length === 0) return;
 
   const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const stylesData = [
     {
-      title: 'Casual Chic',
-      fabric: 'Linho Italiano 100% Puro',
-      realTitle: 'Casual Chic',
-      realSub: 'Camisa Linho & Denim Reto',
-      img: '/images/casual.webp',
-      wa: 'Quero o Look Casual Chic no WhatsApp',
-      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Look%20Casual%20Chic%20no%20site%20e%20gostaria%20de%20saber%20tamanhos%20dispon%C3%ADveis'
+      title: 'Vestido Marsala Degagê',
+      sub: 'R$ 94,46 • Costas Decotadas',
+      fabric: 'Seda Pura & Crepe de Chiffon',
+      wa: 'Quero o Vestido Marsala no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Vestido%20Longo%20Marsala%20(R$%2094,46)%20e%20gostaria%20de%20saber%20os%20tamanhos%20dispon%C3%ADveis'
     },
     {
-      title: 'Festa & Gala',
-      fabric: 'Seda Acetinada Marsala Fluida',
-      realTitle: 'Vestido Gala Marsala',
-      realSub: 'Decote Degagê com Fenda',
-      img: '/images/festa.webp',
-      wa: 'Quero o Vestido de Gala no WhatsApp',
-      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Vestido%20de%20Gala%20no%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es'
+      title: 'Vestido Sereia White & Gold',
+      sub: 'R$ 130,90 • Costas Douradas',
+      fabric: 'Crepe Estruturado & Ouro Polido',
+      wa: 'Quero o Vestido Branco Dourado no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Vestido%20Sereia%20Branco%20com%20Costas%20Douradas%20(R$%20130,90)%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es'
     },
     {
-      title: 'Alfaiataria Executiva',
-      fabric: 'Crepe Estruturado de Alfaiataria',
-      realTitle: 'Tailleur Executivo',
-      realSub: 'Blazer Fendi & Calça Reta',
-      img: '/images/trabalho.webp',
-      wa: 'Quero a Alfaiataria Executiva no WhatsApp',
-      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20da%20Alfaiataria%20Executiva%20no%20site%20e%20gostaria%20de%20conhecer%20os%20modelos'
+      title: 'Wide Leg Denim & Cetim',
+      sub: 'Coleção Casual • Frente & Costas',
+      fabric: 'Jeans 100% Algodão & Cetim Navy',
+      wa: 'Quero o Look Denim & Top no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Look%20Wide%20Leg%20Denim%20e%20Blusa%20Acetinada%20e%20gostaria%20de%20saber%20valores%20e%20tamanhos'
     },
     {
-      title: 'Athleisure Studio',
-      fabric: 'Malha Canelada Seamless DryTech',
-      realTitle: 'Conjunto Athleisure',
-      realSub: 'Top Esmeralda & Legging',
-      img: '/images/esporte.webp',
-      wa: 'Quero o Conjunto Athleisure no WhatsApp',
-      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Conjunto%20Athleisure%20no%20site%20e%20gostaria%20de%20pedir%20informa%C3%A7%C3%B5es'
+      title: 'Macacão Denim Flare Vintage',
+      sub: 'Modelagem Modeladora • Barra Flare',
+      fabric: 'Denim Premium com Elastano',
+      wa: 'Quero o Macacão Jeans Flare no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Macacão%20Jeans%20Flare%20que%20vi%20no%20site%20e%20gostaria%20de%20saber%20as%20medidas'
+    },
+    {
+      title: 'Conjunto Palazzo Chocolate',
+      sub: 'Tomara que Caia & Calça Ampla',
+      fabric: 'Cetim Nobre Duchese Tom Café',
+      wa: 'Quero o Conjunto de Cetim no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Conjunto%20de%20Cetim%20Chocolate%20(Top%20e%20Palazzo)%20e%20gostaria%20de%20pedir%20informa%C3%A7%C3%B5es'
     }
   ];
 
   let currentIndex = 0;
+  let isTransitioning = false;
   let cycleTimer = null;
-  const cycleDuration = 3600; // 3.6s de contemplação tranquila por look
+  const cycleDuration = 4200; // 4.2 segundos por look
 
-  function updateElements(idx) {
+  function updateMeta(idx) {
     const data = stylesData[idx];
+    if (!data) return;
 
-    // Atualiza camadas de roupa
-    outfits.forEach((outfit, i) => {
-      outfit.classList.toggle('active', i === idx);
-    });
+    if (fabricLabel) fabricLabel.textContent = data.fabric;
+    if (lookTitle) lookTitle.textContent = data.title;
+    if (lookSub) lookSub.textContent = data.sub;
+    if (waChipText) waChipText.textContent = data.wa;
+    if (waChip) waChip.href = data.waLink;
 
     // Atualiza abas interativas
     tabs.forEach((tab, i) => {
       const isActive = (i === idx);
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      // Reseta barra de progresso da aba ativa
+      const fill = tab.querySelector('.tab-bar-fill');
+      if (fill) {
+        fill.style.transition = 'none';
+        fill.style.width = '0%';
+        if (isActive && !isReducedMotion) {
+          // Força reflow para reiniciar a animação da barra
+          void fill.offsetWidth;
+          fill.style.transition = `width ${cycleDuration}ms linear`;
+          fill.style.width = '100%';
+        }
+      }
     });
-
-    // Atualiza dados contextuais
-    if (fabricLabel) fabricLabel.textContent = data.fabric;
-    if (realThumb) {
-      realThumb.src = data.img;
-      realThumb.alt = data.realTitle;
-    }
-    if (realTitle) realTitle.textContent = data.realTitle;
-    if (realSub) realSub.textContent = data.realSub;
-    if (waChipText) waChipText.textContent = data.wa;
-    if (waChip) waChip.href = data.waLink;
   }
 
-  function setLook(idx, animate = true) {
-    if (idx === currentIndex && rotor.classList.contains('pivot-out')) return;
-    currentIndex = idx;
+  function spinToLook(targetIndex, direction = 1) {
+    if (targetIndex === currentIndex || isTransitioning) return;
+    isTransitioning = true;
 
-    if (!isReducedMotion && animate) {
-      // 1. Pivot de passarela elegante
-      rotor.classList.remove('pivot-in');
-      rotor.classList.add('pivot-out');
+    const currentSlide = slides[currentIndex];
+    const nextSlide = slides[targetIndex];
 
-      // 2. Vértice suave da transição
-      setTimeout(() => {
-        updateElements(currentIndex);
-        rotor.classList.remove('pivot-out');
-        rotor.classList.add('pivot-in');
-      }, 350);
-    } else {
-      updateElements(currentIndex);
+    if (!currentSlide || !nextSlide) {
+      isTransitioning = false;
+      return;
     }
+
+    if (isReducedMotion) {
+      currentSlide.className = 'turntable-slide';
+      nextSlide.className = 'turntable-slide active';
+      currentIndex = targetIndex;
+      updateMeta(currentIndex);
+      isTransitioning = false;
+      return;
+    }
+
+    // Define classes de transição 3D
+    const outClass = direction > 0 ? 'spin-out-left' : 'spin-out-right';
+    const inStartClass = direction > 0 ? 'spin-in-right' : 'spin-in-left';
+
+    // Prepara o slide entrante
+    nextSlide.className = `turntable-slide ${inStartClass}`;
+    void nextSlide.offsetWidth; // Força reflow para registrar posição 3D inicial
+
+    // Executa a rotação dos dois slides simultaneamente
+    currentSlide.className = `turntable-slide ${outClass}`;
+    nextSlide.className = 'turntable-slide active';
+
+    currentIndex = targetIndex;
+    updateMeta(currentIndex);
+
+    // Conclui a transição após o tempo da animação CSS (850ms)
+    setTimeout(() => {
+      slides.forEach((slide, i) => {
+        if (i !== currentIndex) {
+          slide.className = 'turntable-slide';
+        }
+      });
+      isTransitioning = false;
+    }, 850);
+  }
+
+  function nextLook() {
+    const nextIdx = (currentIndex + 1) % stylesData.length;
+    spinToLook(nextIdx, 1);
+  }
+
+  function prevLook() {
+    const prevIdx = (currentIndex - 1 + stylesData.length) % stylesData.length;
+    spinToLook(prevIdx, -1);
   }
 
   function startCycle() {
     if (isReducedMotion) return;
     stopCycle();
     cycleTimer = setInterval(() => {
-      const nextIdx = (currentIndex + 1) % stylesData.length;
-      setLook(nextIdx, true);
+      nextLook();
     }, cycleDuration);
   }
 
@@ -135,26 +176,84 @@ function initHeroMannequin() {
     }
   }
 
-  // Interação manual nas abas
+  // Event Listeners dos Botões Anterior e Próximo
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      stopCycle();
+      prevLook();
+      startCycle();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      stopCycle();
+      nextLook();
+      startCycle();
+    });
+  }
+
+  // Cliques nas Abas
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-      const targetIndex = parseInt(tab.dataset.index, 10);
-      if (targetIndex === currentIndex) return;
+      const targetIdx = parseInt(tab.dataset.index, 10);
+      if (isNaN(targetIdx) || targetIdx === currentIndex) return;
 
       stopCycle();
-      setLook(targetIndex, true);
+      const dir = targetIdx > currentIndex ? 1 : -1;
+      spinToLook(targetIdx, dir);
       startCycle();
     });
   });
 
-  // Pausa ao passar o mouse em computadores para permitir inspeção atenta
+  // Navegação por Teclado (Acessibilidade)
+  if (stageViewport) {
+    stageViewport.setAttribute('tabindex', '0');
+    stageViewport.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        stopCycle();
+        nextLook();
+        startCycle();
+      } else if (e.key === 'ArrowLeft') {
+        stopCycle();
+        prevLook();
+        startCycle();
+      }
+    });
+
+    // Suporte a Touch / Swipe em dispositivos móveis
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    stageViewport.addEventListener('touchstart', (e) => {
+      stopCycle();
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    stageViewport.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diffX = touchStartX - touchEndX;
+      if (Math.abs(diffX) > 45) {
+        if (diffX > 0) {
+          nextLook(); // swipe para a esquerda -> próximo look
+        } else {
+          prevLook(); // swipe para a direita -> look anterior
+        }
+      }
+      startCycle();
+    }, { passive: true });
+  }
+
+  // Pausa ao passar o mouse em computadores para contemplar a peça
   if (stage && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     stage.addEventListener('mouseenter', stopCycle);
     stage.addEventListener('mouseleave', startCycle);
   }
 
-  // Inicia estado 0 e dá partida no ciclo
-  setLook(0, false);
+  // Inicialização
+  updateMeta(0);
   startCycle();
 }
 
