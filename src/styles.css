@@ -1390,20 +1390,35 @@ html.embed-hero-only .hero-section {
 
 @media (max-width: 768px) {
   html.embed-hero-only .hero-grid {
-    gap: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+  html.embed-hero-only .hero-stage {
+    order: -1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   html.embed-hero-only .hero-copy {
     gap: 0.75rem !important;
+    order: 1 !important;
   }
   html.embed-hero-only .hero-title {
-    font-size: 1.5rem !important;
+    font-size: 1.45rem !important;
+    line-height: 1.2 !important;
   }
   html.embed-hero-only .hero-description {
-    font-size: 0.88rem !important;
+    font-size: 0.85rem !important;
     line-height: 1.45 !important;
   }
+  html.embed-hero-only .hero-actions {
+    display: none !important;
+  }
+  html.embed-hero-only .hero-trust-chips {
+    display: none !important;
+  }
   html.embed-hero-only .stage-viewport {
-    height: 380px !important;
+    height: 390px !important;
   }
   html.embed-hero-only .mannequin-photo {
     max-height: 350px !important;
