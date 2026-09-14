@@ -87,135 +87,204 @@
         </div>
       </div>
 
-      <!-- Lado Direito: Palco Manequim 3D Animado (SPEC-001 Seção 2) -->
+      <!-- Lado Direito: Palco Manequim 3D de Alta Costura (SPEC-001 Seção 2) -->
       <div class="hero-stage">
-        <div class="mannequin-pedestal" aria-label="Manequim virtual exibindo estilos de roupas femininas">
-          <div class="pedestal-shadow" aria-hidden="true"></div>
+        
+        <div class="stage-viewport">
+          <!-- Tag Flutuante de Tecido Nobre -->
+          <div class="fabric-pill" id="fabricPill" aria-live="polite">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            <span id="fabricLabel">Linho Italiano 100% Puro</span>
+          </div>
 
-          <!-- Contêiner 3D giratório -->
-          <div class="mannequin-rotor" id="mannequinRotor">
+          <!-- Pódio Circular de Vitrine de Boutique -->
+          <div class="podium-base" aria-hidden="true"></div>
+          <div class="podium-contact-shadow" aria-hidden="true"></div>
+
+          <!-- Rotor 3D do Manequim (Passarela & Movimento Suave) -->
+          <div class="mannequin-rotor" id="mannequinRotor" aria-label="Manequim virtual em estilo alta costura exibindo a coleção da Lumina Boutique">
             
-            <!-- 1. Silhueta Base do Manequim (Atelier Dummy neutro cinza/preto) -->
-            <svg class="mannequin-base" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Haste e Pedestal de Apoio -->
-              <rect x="147" y="320" width="6" height="65" rx="3" fill="#404040" />
-              <ellipse cx="150" cy="385" rx="38" ry="8" fill="#2B2B2B" stroke="#505050" stroke-width="2" />
-              
-              <!-- Cabeça estilizada de Atelier (sem traços faciais) -->
-              <ellipse cx="150" cy="46" rx="15" ry="21" fill="#383838" />
-              <!-- Pescoço -->
-              <path d="M144 65 H156 V84 H144 Z" fill="#303030" />
-              
-              <!-- Corpo / Tronco / Manequim Silhueta -->
-              <path d="M150 82
-                       C134 82 108 88 102 96
-                       C98 102 96 114 98 126
-                       C100 138 106 148 116 156
-                       C122 161 126 166 126 174
-                       C126 182 120 190 114 200
-                       C106 214 106 230 110 248
-                       C114 266 122 284 126 305
-                       C128 315 130 325 132 335
-                       L142 335
-                       C144 320 146 295 148 275
-                       C149 265 151 265 152 275
-                       C154 295 156 320 158 335
-                       L168 335
-                       C170 325 172 315 174 305
-                       C178 284 186 266 190 248
-                       C194 230 194 214 186 200
-                       C180 190 174 182 174 174
-                       C174 166 178 161 184 156
-                       C194 148 200 138 202 126
-                       C204 114 202 102 198 96
-                       C192 88 166 82 150 82 Z"
-                    fill="#262626" stroke="#444444" stroke-width="1.5" />
-              
-              <!-- Braços estilizados de manequim estático -->
-              <path d="M102 98 C92 110 88 132 89 155 C90 170 94 186 98 202" stroke="#333333" stroke-width="6" stroke-linecap="round" fill="none" />
-              <path d="M198 98 C208 110 212 132 211 155 C210 170 206 186 202 202" stroke="#333333" stroke-width="6" stroke-linecap="round" fill="none" />
-            </svg>
-
-            <!-- 2. Roupa 1: CASUAL (Jeans Azul #1E88E5 + Camiseta Branca #FFFFFF) -->
-            <svg class="outfit-layer active" id="outfit-0" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Casual">
-              <!-- Camiseta Branca -->
-              <path d="M136 82 C142 86 158 86 164 82 L196 95 C190 115 186 125 182 132 L168 126 L174 168 C160 172 140 172 126 168 L132 126 L118 132 C114 125 110 115 104 95 Z" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
-              <path d="M140 84 C146 88 154 88 160 84" stroke="#CBD5E1" stroke-width="1.5" fill="none" />
-              <!-- Calça Jeans Azul -->
-              <path d="M126 168 C138 172 162 172 174 168 C176 185 186 205 186 230 C186 260 178 300 173 345 L156 345 C154 310 152 280 150 250 C148 280 146 310 144 345 L127 345 C122 300 114 260 114 230 C114 205 124 185 126 168 Z" fill="#1E88E5" stroke="#1565C0" stroke-width="1.5" />
-              <!-- Cinto e costuras jeans -->
-              <rect x="126" y="167" width="48" height="5" rx="2" fill="#8D6E63" />
-              <path d="M132 185 C140 188 160 188 168 185" stroke="#1565C0" stroke-width="1.2" stroke-dasharray="2 2" fill="none" />
-              <path d="M150 172 V250" stroke="#0D47A1" stroke-width="1.2" fill="none" />
-            </svg>
-
-            <!-- 3. Roupa 2: FESTA (Vestido Fluido Roxo Vibrante #8B3FBE / Rosa Magenta #E91E63) -->
-            <svg class="outfit-layer" id="outfit-1" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Festa">
+            <!-- 1. BASE DO BUSTO DE ALFAIATARIA FRANCESA -->
+            <svg class="svg-layer base-layer" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <defs>
-                <linearGradient id="partyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#E91E63" />
-                  <stop offset="60%" stop-color="#8B3FBE" />
-                  <stop offset="100%" stop-color="#6A1B9A" />
-                </linearGradient>
+                <linearGradient id="goldFinial" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE082"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#997A15"/></linearGradient>
+                <linearGradient id="metalPole" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2D2D30"/><stop offset="50%" stop-color="#4A4A50"/><stop offset="100%" stop-color="#1E1E20"/></linearGradient>
+                <linearGradient id="linenForm" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E2DDD5"/><stop offset="25%" stop-color="#F7F5F0"/><stop offset="70%" stop-color="#FFFFFF"/><stop offset="90%" stop-color="#EBE6DC"/><stop offset="100%" stop-color="#D5CFC3"/></linearGradient>
+                <radialGradient id="bustGlow" cx="45%" cy="35%" r="60%"><stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/><stop offset="100%" stop-color="#DDD6C8" stop-opacity="0"/></radialGradient>
               </defs>
-              <!-- Corpete do Vestido de Festa -->
-              <path d="M138 90 C144 98 156 98 162 90 L188 102 C184 122 178 140 173 158 C161 162 139 162 127 158 C122 140 116 122 112 102 Z" fill="url(#partyGrad)" stroke="#C2185B" stroke-width="1.5" />
-              <!-- Saia Longa Fluida com fenda e caimento -->
-              <path d="M127 158 C140 162 160 162 173 158 C185 195 208 260 216 348 C195 354 165 356 150 356 C135 356 105 354 84 348 C92 260 115 195 127 158 Z" fill="url(#partyGrad)" opacity="0.96" stroke="#4A148C" stroke-width="1.5" />
-              <!-- Plissados e reflexos de brilho -->
-              <path d="M150 160 Q152 260 150 355" stroke="#FF80AB" stroke-width="1.2" opacity="0.6" fill="none" />
-              <path d="M138 160 Q130 260 118 350" stroke="#FF80AB" stroke-width="1" opacity="0.5" fill="none" />
-              <path d="M162 160 Q170 260 182 350" stroke="#FF80AB" stroke-width="1" opacity="0.5" fill="none" />
+
+              <!-- Pedestal de Chão -->
+              <ellipse cx="160" cy="445" rx="55" ry="12" fill="url(#metalPole)" />
+              <ellipse cx="160" cy="443" rx="46" ry="9" fill="#1C1C1E" />
+              <circle cx="160" cy="443" r="10" fill="url(#goldFinial)" />
+              <rect x="156.5" y="270" width="7" height="173" rx="3.5" fill="url(#metalPole)" />
+              <circle cx="160" cy="335" r="5" fill="url(#goldFinial)" />
+              <circle cx="160" cy="405" r="6" fill="url(#goldFinial)" />
+
+              <!-- Remate Superior / Capitel Torneado -->
+              <circle cx="160" cy="38" r="8" fill="url(#goldFinial)" />
+              <ellipse cx="160" cy="48" rx="14" ry="4" fill="url(#goldFinial)" />
+              <path d="M152 50 C152 56 150 62 148 68 H172 C170 62 168 56 168 50 Z" fill="url(#goldFinial)" />
+
+              <!-- Busto de Alfaiataria -->
+              <path d="M148 67 C148 76 146 84 144 88 H176 C174 84 172 76 172 67 Z" fill="url(#linenForm)" stroke="#D0C9BD" stroke-width="0.8" />
+              <path d="M144 88
+                       C132 90 114 96 100 106
+                       C94 111 92 118 92 124
+                       C92 130 96 136 102 140
+                       C108 144 116 150 118 162
+                       C120 174 116 186 114 198
+                       C112 210 114 226 120 242
+                       C124 252 132 264 140 274
+                       C146 280 154 284 160 284
+                       C166 284 174 280 180 274
+                       C188 264 196 252 200 242
+                       C206 226 208 210 206 198
+                       C204 186 200 174 202 162
+                       C204 150 212 144 218 140
+                       C224 136 228 130 228 124
+                       C228 118 226 111 220 106
+                       C206 96 188 90 176 88 Z"
+                    fill="url(#linenForm)" stroke="#C8C0B2" stroke-width="1.2" />
+              <ellipse cx="98" cy="120" rx="4" ry="12" fill="url(#goldFinial)" />
+              <ellipse cx="222" cy="120" rx="4" ry="12" fill="url(#goldFinial)" />
+              <path d="M160 88 V284" stroke="#B8AF9E" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.75" />
+              <path d="M115 186 C135 192 185 192 205 186" stroke="#D4AF37" stroke-width="1.2" opacity="0.5" fill="none" />
             </svg>
 
-            <!-- 4. Roupa 3: TRABALHO (Blazer Cinza Claro #BDBDBD + Calça Preta #1A1A1A) -->
-            <svg class="outfit-layer" id="outfit-2" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Trabalho">
-              <!-- Calça Social Alfaiataria Preta -->
-              <path d="M126 175 C138 178 162 178 174 175 C178 200 184 240 184 275 C184 305 178 335 174 350 L157 350 C155 315 153 285 150 255 C147 285 145 315 143 350 L126 350 C122 335 116 305 116 275 C116 240 122 200 126 175 Z" fill="#1A1A1A" stroke="#333333" stroke-width="1.5" />
-              <path d="M136 195 V348" stroke="#404040" stroke-width="1" fill="none" />
-              <path d="M164 195 V348" stroke="#404040" stroke-width="1" fill="none" />
-              <!-- Camisa Branca Interna -->
-              <path d="M142 82 H158 L154 125 L146 125 Z" fill="#FFFFFF" />
-              <!-- Blazer Estruturado Cinza Claro -->
-              <path d="M135 84 L100 95 C96 120 92 145 88 175 L102 178 L112 142 L116 192 C134 196 166 196 184 192 L188 142 L198 178 L212 175 C208 145 204 120 200 95 L165 84 L154 135 L146 135 Z" fill="#D4D4D8" stroke="#A1A1AA" stroke-width="1.5" />
-              <!-- Lapela Alfaiataria e Botão -->
-              <path d="M135 84 L148 135 L130 115 Z" fill="#E4E4E7" stroke="#A1A1AA" stroke-width="1" />
-              <path d="M165 84 L152 135 L170 115 Z" fill="#E4E4E7" stroke="#A1A1AA" stroke-width="1" />
-              <circle cx="150" cy="154" r="3" fill="#27272A" />
+            <!-- 2. ROUPA 1: CASUAL CHIC (Camisa Linho Off-White + Jeans Pantalona Índigo) -->
+            <svg class="svg-layer outfit-layer active" id="outfit-0" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Casual Chic">
+              <defs>
+                <linearGradient id="denimGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1E3A8A"/><stop offset="35%" stop-color="#2563EB"/><stop offset="75%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient>
+                <linearGradient id="shirtGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F1F5F9"/><stop offset="40%" stop-color="#FFFFFF"/><stop offset="85%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#E2E8F0"/></linearGradient>
+              </defs>
+              <!-- Calça Jeans Pantalona Índigo com Modelagem Fluida -->
+              <path d="M118 194
+                       C140 198 180 198 202 194
+                       C210 216 214 238 210 262
+                       C206 292 204 330 206 370
+                       C208 390 212 408 218 425
+                       L172 425
+                       C168 390 165 340 163 290
+                       C161 268 161 255 160 250
+                       C159 255 159 268 157 290
+                       C155 340 152 390 148 425
+                       L102 425
+                       C108 408 112 390 114 370
+                       C116 330 114 292 110 262
+                       C106 238 110 216 118 194 Z"
+                    fill="url(#denimGrad)" stroke="#1E40AF" stroke-width="1.2"/>
+              <path d="M118 195 C140 199 180 199 202 195" stroke="#D97706" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+              <path d="M160 196 V250" stroke="#D97706" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+              <path d="M122 199 C132 216 142 222 148 222" stroke="#D97706" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+              <path d="M198 199 C188 216 178 222 172 222" stroke="#D97706" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+              <circle cx="123" cy="201" r="1.5" fill="#D4AF37"/>
+              <circle cx="197" cy="201" r="1.5" fill="#D4AF37"/>
+              <rect x="116" y="190" width="88" height="7" rx="2" fill="#78350F"/>
+              <rect x="154" y="188" width="12" height="11" rx="2" fill="none" stroke="#D4AF37" stroke-width="2"/>
+              <line x1="160" y1="189" x2="160" y2="198" stroke="#D4AF37" stroke-width="1.5"/>
+              <line x1="102" y1="418" x2="148" y2="418" stroke="#D97706" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="172" y1="418" x2="218" y2="418" stroke="#D97706" stroke-width="1" stroke-dasharray="3 2"/>
+
+              <!-- Camisa de Linho Off-White Fluida -->
+              <path d="M144 88 C130 90 110 96 96 108 C90 114 90 122 92 136 L106 142 L116 160 C118 174 116 186 118 196 C132 200 188 200 202 196 C204 186 202 174 204 160 L214 142 L228 136 C230 122 230 114 224 108 C210 96 190 90 176 88 Z" fill="url(#shirtGrad)" stroke="#CBD5E1" stroke-width="1.2"/>
+              <path d="M144 88 L156 138 L130 110 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+              <path d="M176 88 L164 138 L190 110 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+              <path d="M160 138 V196" stroke="#E2E8F0" stroke-width="1.2"/>
+              <circle cx="160" cy="148" r="2.2" fill="#FFFFFF" stroke="#94A3B8" stroke-width="0.8"/>
+              <circle cx="160" cy="166" r="2.2" fill="#FFFFFF" stroke="#94A3B8" stroke-width="0.8"/>
+              <circle cx="160" cy="184" r="2.2" fill="#FFFFFF" stroke="#94A3B8" stroke-width="0.8"/>
             </svg>
 
-            <!-- 5. Roupa 4: ESPORTE (Top Neon Verde #39FF14 + Legging Preta #1A1A1A) -->
-            <svg class="outfit-layer" id="outfit-3" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Esporte">
-              <!-- Top Esportivo Nadador com detalhes Neon -->
-              <path d="M136 84 C142 88 158 88 164 84 L184 94 C180 112 176 124 172 136 C160 140 140 140 128 136 C124 124 120 112 116 94 Z" fill="#1A1A1A" stroke="#333333" stroke-width="1.5" />
-              <path d="M132 110 C140 114 160 114 168 110" stroke="#39FF14" stroke-width="3" fill="none" />
-              <rect x="128" y="132" width="44" height="4" rx="2" fill="#39FF14" />
-              <!-- Legging de Alta Compressão com Faixas Laterais Neon -->
-              <path d="M126 152 C138 156 162 156 174 152 C178 180 186 215 186 245 C186 278 178 318 173 350 L156 350 C154 315 152 285 150 255 C148 285 146 315 144 350 L127 350 C122 318 114 278 114 245 C114 215 122 180 126 152 Z" fill="#1A1A1A" stroke="#262626" stroke-width="1.5" />
-              <!-- Listras Dinâmicas de Performance Neon -->
-              <path d="M125 156 C120 190 115 240 126 348" stroke="#39FF14" stroke-width="2.5" stroke-linecap="round" fill="none" />
-              <path d="M175 156 C180 190 185 240 174 348" stroke="#39FF14" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <!-- 3. ROUPA 2: GALA & FESTA (Vestido Longo Seda Marsala com Corpete Degagê) -->
+            <svg class="svg-layer outfit-layer" id="outfit-1" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Festa e Gala">
+              <defs>
+                <linearGradient id="partyGala" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F43F5E"/><stop offset="35%" stop-color="#E11D48"/><stop offset="70%" stop-color="#BE123C"/><stop offset="100%" stop-color="#881337"/></linearGradient>
+                <linearGradient id="silkHighlight" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FDA4AF" stop-opacity="0.8"/><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.3"/><stop offset="100%" stop-color="#BE123C" stop-opacity="0"/></linearGradient>
+              </defs>
+              <path d="M144 88 C132 94 116 100 102 108 C96 112 94 122 96 138 C104 148 116 156 120 175 C130 180 190 180 200 175 C204 156 216 148 224 138 C226 122 224 112 218 108 C204 100 188 94 176 88 C168 96 152 96 144 88 Z" fill="url(#partyGala)" stroke="#9F1239" stroke-width="1.2"/>
+              <path d="M120 174 C140 178 180 178 200 174 C202 184 198 190 196 192 C178 195 142 195 124 192 C122 190 118 184 120 174 Z" fill="#4C0519"/>
+              <ellipse cx="160" cy="183" rx="10" ry="6" fill="url(#goldFinial)"/>
+              <path d="M124 192 C142 195 178 195 196 192 C214 240 236 330 248 430 C220 440 180 444 160 444 C140 444 100 440 72 430 C84 330 106 240 124 192 Z" fill="url(#partyGala)" stroke="#881337" stroke-width="1.5"/>
+              <path d="M160 194 Q162 310 160 443" stroke="url(#silkHighlight)" stroke-width="3" fill="none"/>
+              <path d="M142 193 Q132 310 114 435" stroke="url(#silkHighlight)" stroke-width="2.5" fill="none"/>
+              <path d="M178 193 Q188 310 206 435" stroke="url(#silkHighlight)" stroke-width="2.5" fill="none"/>
+            </svg>
+
+            <!-- 4. ROUPA 3: ALFAIATARIA EXECUTIVA (Blazer Crepe Fendi + Calça Reta Social) -->
+            <svg class="svg-layer outfit-layer" id="outfit-2" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Alfaiataria Executiva">
+              <defs>
+                <linearGradient id="blazerGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D4D4D8"/><stop offset="30%" stop-color="#E4E4E7"/><stop offset="70%" stop-color="#F4F4F5"/><stop offset="100%" stop-color="#A1A1AA"/></linearGradient>
+                <linearGradient id="trousersGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#18181B"/><stop offset="40%" stop-color="#27272A"/><stop offset="80%" stop-color="#3F3F46"/><stop offset="100%" stop-color="#18181B"/></linearGradient>
+              </defs>
+              <path d="M120 200 C135 204 185 204 200 200 C206 240 210 320 206 425 L174 425 C172 350 168 280 160 250 C152 280 148 350 146 425 L114 425 C110 320 114 240 120 200 Z" fill="url(#trousersGrad)" stroke="#27272A" stroke-width="1.2"/>
+              <line x1="130" y1="210" x2="130" y2="422" stroke="#52525B" stroke-width="1.2"/>
+              <line x1="190" y1="210" x2="190" y2="422" stroke="#52525B" stroke-width="1.2"/>
+              <path d="M146 88 H174 L168 140 L152 140 Z" fill="#FFFFFF"/>
+              <path d="M144 88 C130 90 108 95 94 106 C88 112 88 120 90 134 L104 140 L112 180 C114 205 116 220 124 224 C138 226 182 226 196 224 C204 220 206 205 208 180 L216 140 L230 134 C232 120 232 112 226 106 C212 95 190 90 176 88 Z" fill="url(#blazerGrad)" stroke="#71717A" stroke-width="1.2"/>
+              <path d="M144 88 L126 130 L146 142 L132 165 L154 185 L160 140 Z" fill="#F4F4F5" stroke="#A1A1AA" stroke-width="1"/>
+              <path d="M176 88 L194 130 L174 142 L188 165 L166 185 L160 140 Z" fill="#F4F4F5" stroke="#A1A1AA" stroke-width="1"/>
+              <circle cx="160" cy="190" r="3.5" fill="#18181B" stroke="#D4AF37" stroke-width="1"/>
+              <rect x="122" y="200" width="22" height="4" rx="1" fill="#71717A"/>
+              <rect x="176" y="200" width="22" height="4" rx="1" fill="#71717A"/>
+            </svg>
+
+            <!-- 5. ROUPA 4: ATHLEISURE STUDIO (Top Anatômico Esmeralda + Legging de Compressão) -->
+            <svg class="svg-layer outfit-layer" id="outfit-3" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estilo Athleisure Studio">
+              <defs>
+                <linearGradient id="athleisureEmerald" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#064E3B"/><stop offset="35%" stop-color="#059669"/><stop offset="70%" stop-color="#10B981"/><stop offset="100%" stop-color="#047857"/></linearGradient>
+                <linearGradient id="leggingBlack" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#111827"/><stop offset="50%" stop-color="#1F2937"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+              </defs>
+              <path d="M120 186 C135 190 185 190 200 186 C206 230 212 310 206 425 L176 425 C174 350 170 270 160 240 C150 270 146 350 144 425 L114 425 C108 310 114 230 120 186 Z" fill="url(#leggingBlack)" stroke="#0F172A" stroke-width="1.2"/>
+              <path d="M120 186 C135 190 185 190 200 186 L198 205 C184 209 136 209 122 205 Z" fill="url(#athleisureEmerald)"/>
+              <path d="M120 210 C116 260 120 330 134 420" stroke="url(#athleisureEmerald)" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M200 210 C204 260 200 330 186 420" stroke="url(#athleisureEmerald)" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M122 155 C135 160 185 160 198 155 L200 186 C185 190 135 190 120 186 Z" fill="url(#linenForm)"/>
+              <path d="M144 88 C136 94 122 100 110 108 C104 114 104 122 106 136 C116 142 120 152 122 158 C136 162 184 162 198 158 C200 152 204 142 214 136 C216 122 216 114 210 108 C198 100 184 94 176 88 C168 98 152 98 144 88 Z" fill="url(#athleisureEmerald)" stroke="#047857" stroke-width="1.2"/>
+              <path d="M130 115 C145 130 175 130 190 115" stroke="#A7F3D0" stroke-width="1.5" fill="none" opacity="0.8"/>
+              <path d="M122 152 C138 156 182 156 198 152 V158 C182 162 138 162 122 158 Z" fill="#064E3B"/>
             </svg>
 
           </div>
+
+          <!-- Mini-Card Flutuante da Coleção Real na Modelo -->
+          <div class="collection-real-badge" id="realBadge" aria-label="Foto real do look no corpo da modelo">
+            <img src="/images/casual.webp" alt="Look Casual Chic na modelo" class="real-thumb" id="realThumb" width="48" height="60" />
+            <div class="real-meta">
+              <span class="real-tag">Coleção Real</span>
+              <span class="real-title" id="realTitle">Casual Chic</span>
+              <span class="real-sub" id="realSub">Camisa Linho & Denim Reto</span>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Indicador de Texto Dinâmico Sincronizado (SPEC-001 Seção 2.4) -->
-        <div class="hero-style-display">
-          <div class="style-label-box" aria-live="polite">
-            <span class="style-label-item active" id="label-0">Casual</span>
-            <span class="style-label-item" id="label-1">Festa</span>
-            <span class="style-label-item" id="label-2">Trabalho</span>
-            <span class="style-label-item" id="label-3">Esporte</span>
+        <!-- Controles Interativos da Vitrine (Estilo Stories com Progresso) -->
+        <div class="stage-controls">
+          <div class="style-tabs-track" role="tablist" aria-label="Seletor de Estilos da Coleção">
+            <button class="style-tab active" data-index="0" role="tab" aria-selected="true" aria-controls="outfit-0">
+              <span>Casual</span>
+              <div class="tab-bar-bg"><div class="tab-bar-fill"></div></div>
+            </button>
+            <button class="style-tab" data-index="1" role="tab" aria-selected="false" aria-controls="outfit-1">
+              <span>Festa</span>
+              <div class="tab-bar-bg"><div class="tab-bar-fill"></div></div>
+            </button>
+            <button class="style-tab" data-index="2" role="tab" aria-selected="false" aria-controls="outfit-2">
+              <span>Trabalho</span>
+              <div class="tab-bar-bg"><div class="tab-bar-fill"></div></div>
+            </button>
+            <button class="style-tab" data-index="3" role="tab" aria-selected="false" aria-controls="outfit-3">
+              <span>Esporte</span>
+              <div class="tab-bar-bg"><div class="tab-bar-fill"></div></div>
+            </button>
           </div>
 
-          <!-- Seletores Manuais / Indicadores de Quadrante -->
-          <div class="style-switch-dots" role="tablist" aria-label="Seletor de Estilo do Manequim">
-            <button class="style-dot-btn active" data-style-index="0" role="tab" aria-selected="true" aria-controls="outfit-0">Casual</button>
-            <button class="style-dot-btn" data-style-index="1" role="tab" aria-selected="false" aria-controls="outfit-1">Festa</button>
-            <button class="style-dot-btn" data-style-index="2" role="tab" aria-selected="false" aria-controls="outfit-2">Trabalho</button>
-            <button class="style-dot-btn" data-style-index="3" role="tab" aria-selected="false" aria-controls="outfit-3">Esporte</button>
-          </div>
+          <!-- Ação Direta no WhatsApp com Mensagem Personalizada do Look -->
+          <a href="https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Look%20Casual%20Chic%20no%20site%20e%20gostaria%20de%20saber%20tamanhos%20dispon%C3%ADveis" target="_blank" rel="noopener noreferrer" class="whatsapp-direct-chip" id="waChip" aria-label="Pedir informações sobre o look em exibição no WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.632.072-1.802-.416-1.503-.626-2.484-2.15-2.56-2.25-.075-.102-.609-.81-.609-1.545 0-.735.385-1.096.521-1.246.136-.15.297-.188.397-.188.1 0 .2 0 .288.006.096.006.223-.036.35.267.13.31.442 1.077.481 1.157.04.08.067.173.013.28-.053.107-.08.173-.16.267-.08.093-.168.208-.24.28-.08.08-.163.167-.07.327.094.16.417.688.895 1.114.615.548 1.133.718 1.293.798.16.08.254.067.348-.04.093-.107.4-468.508-.628.107-.16.213-.133.36-.08.147.053.933.44 1.093.52.16.08.267.12.307.187.04.066.04.385-.104.79zM12 2C6.477 2 2 6.477 2 12c0 1.891.526 3.662 1.444 5.176L2 22l4.981-1.306A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            <span id="waChipText">Quero o Look Casual Chic no WhatsApp</span>
+          </a>
         </div>
 
       </div>

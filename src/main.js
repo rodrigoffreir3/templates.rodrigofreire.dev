@@ -11,116 +11,150 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. HERO MANNEQUIN 3D CONTROLLER
+   1. HERO MANNEQUIN HAUTE COUTURE CONTROLLER (ATELIER 3D)
    ========================================================================== */
 function initHeroMannequin() {
   const rotor = document.getElementById('mannequinRotor');
   const outfits = document.querySelectorAll('.outfit-layer');
-  const labels = document.querySelectorAll('.style-label-item');
-  const dotBtns = document.querySelectorAll('.style-dot-btn');
+  const tabs = document.querySelectorAll('.style-tab');
+  const fabricLabel = document.getElementById('fabricLabel');
+  const realThumb = document.getElementById('realThumb');
+  const realTitle = document.getElementById('realTitle');
+  const realSub = document.getElementById('realSub');
+  const waChip = document.getElementById('waChip');
+  const waChipText = document.getElementById('waChipText');
+  const stage = document.querySelector('.hero-stage');
 
   if (!rotor || outfits.length === 0) return;
 
   const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let currentIndex = 0;
-  let rotationDeg = 0;
-  let intervalTimer = null;
 
-  function setActiveStyle(index, animateRotation = true) {
-    const prevIndex = currentIndex;
-    currentIndex = index;
-
-    if (!isReducedMotion && animateRotation) {
-      // 1. Gira 90 graus no eixo Y (ocultando a silhueta no perfil 3D durante a troca)
-      rotor.classList.remove('turning-in');
-      rotor.classList.add('turning-out');
-
-      // 2. Ao atingir o perfil lateral (450ms), troca de roupa e de texto
-      setTimeout(() => {
-        updateLayersAndText(currentIndex, prevIndex);
-
-        // 3. Conclui a rotação voltando para a frente (0 graus) com a nova roupa exibida com perfeição
-        rotor.classList.remove('turning-out');
-        rotor.classList.add('turning-in');
-      }, 450);
-    } else {
-      updateLayersAndText(currentIndex, prevIndex);
+  const stylesData = [
+    {
+      title: 'Casual Chic',
+      fabric: 'Linho Italiano 100% Puro',
+      realTitle: 'Casual Chic',
+      realSub: 'Camisa Linho & Denim Reto',
+      img: '/images/casual.webp',
+      wa: 'Quero o Look Casual Chic no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Look%20Casual%20Chic%20no%20site%20e%20gostaria%20de%20saber%20tamanhos%20dispon%C3%ADveis'
+    },
+    {
+      title: 'Festa & Gala',
+      fabric: 'Seda Acetinada Marsala Fluida',
+      realTitle: 'Vestido Gala Marsala',
+      realSub: 'Decote Degagê com Fenda',
+      img: '/images/festa.webp',
+      wa: 'Quero o Vestido de Gala no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Vestido%20de%20Gala%20no%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es'
+    },
+    {
+      title: 'Alfaiataria Executiva',
+      fabric: 'Crepe Estruturado de Alfaiataria',
+      realTitle: 'Tailleur Executivo',
+      realSub: 'Blazer Fendi & Calça Reta',
+      img: '/images/trabalho.webp',
+      wa: 'Quero a Alfaiataria Executiva no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20da%20Alfaiataria%20Executiva%20no%20site%20e%20gostaria%20de%20conhecer%20os%20modelos'
+    },
+    {
+      title: 'Athleisure Studio',
+      fabric: 'Malha Canelada Seamless DryTech',
+      realTitle: 'Conjunto Athleisure',
+      realSub: 'Top Esmeralda & Legging',
+      img: '/images/esporte.webp',
+      wa: 'Quero o Conjunto Athleisure no WhatsApp',
+      waLink: 'https://wa.me/5569999999999?text=Ol%C3%A1%2C%20gostei%20do%20Conjunto%20Athleisure%20no%20site%20e%20gostaria%20de%20pedir%20informa%C3%A7%C3%B5es'
     }
+  ];
+
+  let currentIndex = 0;
+  let cycleTimer = null;
+  const cycleDuration = 3600; // 3.6s de contemplação tranquila por look
+
+  function updateElements(idx) {
+    const data = stylesData[idx];
+
+    // Atualiza camadas de roupa
+    outfits.forEach((outfit, i) => {
+      outfit.classList.toggle('active', i === idx);
+    });
+
+    // Atualiza abas interativas
+    tabs.forEach((tab, i) => {
+      const isActive = (i === idx);
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    // Atualiza dados contextuais
+    if (fabricLabel) fabricLabel.textContent = data.fabric;
+    if (realThumb) {
+      realThumb.src = data.img;
+      realThumb.alt = data.realTitle;
+    }
+    if (realTitle) realTitle.textContent = data.realTitle;
+    if (realSub) realSub.textContent = data.realSub;
+    if (waChipText) waChipText.textContent = data.wa;
+    if (waChip) waChip.href = data.waLink;
   }
 
-  function updateLayersAndText(curr, prev) {
-    // Atualiza camadas de roupa (fade de opacidade e leve scale)
-    outfits.forEach((outfit, i) => {
-      if (i === curr) {
-        outfit.classList.add('active');
-      } else {
-        outfit.classList.remove('active');
-      }
-    });
+  function setLook(idx, animate = true) {
+    if (idx === currentIndex && rotor.classList.contains('pivot-out')) return;
+    currentIndex = idx;
 
-    // Atualiza texto sincronizado (fade-out sobe 18px, fade-in desce 18px)
-    labels.forEach((label, i) => {
-      if (i === curr) {
-        label.classList.remove('exiting');
-        label.classList.add('active');
-      } else if (i === prev) {
-        label.classList.remove('active');
-        label.classList.add('exiting');
-      } else {
-        label.classList.remove('active', 'exiting');
-      }
-    });
+    if (!isReducedMotion && animate) {
+      // 1. Pivot de passarela elegante
+      rotor.classList.remove('pivot-in');
+      rotor.classList.add('pivot-out');
 
-    // Atualiza botões seletores
-    dotBtns.forEach((dot, i) => {
-      if (i === curr) {
-        dot.classList.add('active');
-        dot.setAttribute('aria-selected', 'true');
-      } else {
-        dot.classList.remove('active');
-        dot.setAttribute('aria-selected', 'false');
-      }
-    });
+      // 2. Vértice suave da transição
+      setTimeout(() => {
+        updateElements(currentIndex);
+        rotor.classList.remove('pivot-out');
+        rotor.classList.add('pivot-in');
+      }, 350);
+    } else {
+      updateElements(currentIndex);
+    }
   }
 
   function startCycle() {
     if (isReducedMotion) return;
     stopCycle();
-    intervalTimer = setInterval(() => {
-      const nextIndex = (currentIndex + 1) % outfits.length;
-      setActiveStyle(nextIndex, true);
-    }, 1500); // 1.5s por rotação de 90° conforme SPEC-001 Seção 2.3
+    cycleTimer = setInterval(() => {
+      const nextIdx = (currentIndex + 1) % stylesData.length;
+      setLook(nextIdx, true);
+    }, cycleDuration);
   }
 
   function stopCycle() {
-    if (intervalTimer) {
-      clearInterval(intervalTimer);
-      intervalTimer = null;
+    if (cycleTimer) {
+      clearInterval(cycleTimer);
+      cycleTimer = null;
     }
   }
 
-  // Interação manual nos botões seletores de estilo
-  dotBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetIndex = parseInt(btn.dataset.styleIndex, 10);
+  // Interação manual nas abas
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const targetIndex = parseInt(tab.dataset.index, 10);
       if (targetIndex === currentIndex) return;
 
       stopCycle();
-      setActiveStyle(targetIndex, true);
-      // Retoma ciclo automático após 4 segundos de inatividade
-      setTimeout(startCycle, 4000);
+      setLook(targetIndex, true);
+      startCycle();
     });
   });
 
-  // Pausa rotação ao passar o mouse em computadores para inspecionar a peça
-  const stage = document.querySelector('.hero-stage');
+  // Pausa ao passar o mouse em computadores para permitir inspeção atenta
   if (stage && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     stage.addEventListener('mouseenter', stopCycle);
     stage.addEventListener('mouseleave', startCycle);
   }
 
-  // Inicia estado 0 e ativa ciclo
-  setActiveStyle(0, false);
+  // Inicia estado 0 e dá partida no ciclo
+  setLook(0, false);
   startCycle();
 }
 
