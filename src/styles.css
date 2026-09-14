@@ -1201,13 +1201,56 @@ button, a {
 
 @media (max-width: 640px) {
   .container {
-    padding: 0 1.2rem;
+    padding: 0 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .header-inner {
     height: 64px;
   }
   .hero-section {
-    padding: 2rem 0 3.5rem;
+    padding: 1.5rem 0 2.5rem;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .hero-title {
+    font-size: 1.7rem;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+  .hero-title-highlight {
+    display: inline;
+  }
+  .hero-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .hero-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .hero-trust-chips {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .hero-trust-chip {
+    font-size: 0.78rem;
   }
   .categories-grid {
     grid-template-columns: 1fr;
@@ -1237,11 +1280,19 @@ button, a {
   }
 
   /* Vitrine Giratória 3D no Mobile */
+  .hero-stage {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
   .stage-viewport {
-    height: 440px;
+    height: 420px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .mannequin-photo {
-    max-height: 400px;
+    max-height: 380px;
   }
   .stage-spin-btn {
     width: 36px;
@@ -1326,10 +1377,43 @@ html.embed-hero-only,
 html.embed-hero-only body {
   background: transparent !important;
   min-height: auto !important;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
 }
 
 html.embed-hero-only .hero-section {
-  padding-top: 1rem !important;
-  padding-bottom: 2rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 1.5rem !important;
   min-height: auto !important;
+  overflow: hidden !important;
 }
+
+@media (max-width: 768px) {
+  html.embed-hero-only .hero-grid {
+    gap: 1rem !important;
+  }
+  html.embed-hero-only .hero-copy {
+    gap: 0.75rem !important;
+  }
+  html.embed-hero-only .hero-title {
+    font-size: 1.5rem !important;
+  }
+  html.embed-hero-only .hero-description {
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+  }
+  html.embed-hero-only .stage-viewport {
+    height: 380px !important;
+  }
+  html.embed-hero-only .mannequin-photo {
+    max-height: 350px !important;
+  }
+  html.embed-hero-only .style-tabs-track {
+    padding: 0.2rem !important;
+  }
+  html.embed-hero-only .style-tab {
+    padding: 0.4rem 0.35rem !important;
+    font-size: 0.68rem !important;
+  }
+}
+
