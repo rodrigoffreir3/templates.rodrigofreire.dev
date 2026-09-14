@@ -1308,3 +1308,28 @@ button, a {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   MODO DE INCORPORAÇÃO (EMBED HERO ONLY)
+   ========================================================================== */
+html.embed-hero-only .site-header,
+html.embed-hero-only .categories-section,
+html.embed-hero-only .testimonials-section,
+html.embed-hero-only .faq-section,
+html.embed-hero-only .cta-section,
+html.embed-hero-only .site-footer,
+html.embed-hero-only .whatsapp-float {
+  display: none !important;
+}
+
+html.embed-hero-only,
+html.embed-hero-only body {
+  background: transparent !important;
+  min-height: auto !important;
+}
+
+html.embed-hero-only .hero-section {
+  padding-top: 1rem !important;
+  padding-bottom: 2rem !important;
+  min-height: auto !important;
+}
